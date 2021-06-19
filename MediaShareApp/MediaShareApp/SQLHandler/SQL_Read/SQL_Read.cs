@@ -2,35 +2,10 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-
-namespace MediaShareApp
+namespace MediaShareApp.SQLHandler.SQL_Read
 {
-	class SQLHandler
+	class SQL_Read
 	{
-        public void insertPic(byte[] img)
-        {
-            try
-            {
-                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-                builder.DataSource = "nguyencongphi.database.windows.net";
-                builder.UserID = "nguyencongphi";
-                builder.Password = "kratos123@";
-                builder.InitialCatalog = "readModel";
-
-                SqlConnection connection = new SqlConnection(builder.ConnectionString);
-                connection.Open();
-                string query = "insert into myImage values (@img)";
-                SqlCommand cmd = new SqlCommand(query, connection);
-                cmd.Parameters.Add(new SqlParameter("@img", img));
-                cmd.ExecuteNonQuery();
-                connection.Close();
-                MessageBox.Show("Success");
-            }
-            catch (Exception ex )
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
         public List<byte[]> getPic()
         {
             List<byte[]> res = new List<byte[]>();
@@ -68,4 +43,3 @@ namespace MediaShareApp
         }
     }
 }
-
